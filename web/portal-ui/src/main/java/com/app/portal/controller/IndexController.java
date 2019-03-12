@@ -18,7 +18,6 @@ public class IndexController {
     private BeanMapper beanMapper;
 
     @GetMapping("/user")
-    @PostConstruct
     public String getSystems() {
         return restTemplate.getForEntity("http://SYSTEM-SERVICE/user", String.class).getBody();
     }

@@ -198,7 +198,7 @@ configure(subprojects.findAll {
         // Spring Actuator
         compile("org.springframework.boot:spring-boot-starter-actuator")
         // Spring Security
-        compile("org.springframework.boot:spring-boot-starter-security")
+        //compile("org.springframework.boot:spring-boot-starter-security")
 
         // Spring WebFlux
         compile("org.springframework.boot:spring-boot-starter-webflux")
@@ -282,7 +282,7 @@ configure(subprojects.findAll {
         compile("org.springframework.boot:spring-boot-starter-cache")
 
         // Spring Actuator
-        //compile("org.springframework.boot:spring-boot-starter-actuator")
+        compile("org.springframework.boot:spring-boot-starter-actuator")
         // Spring Security
         //compile("org.springframework.boot:spring-boot-starter-security")
 
