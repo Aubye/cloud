@@ -1,0 +1,33 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    user:
+      name: actuator
+      password: test
+      roles: ACTUATOR_ADMIN
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url:
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  redis:
+    host:
+    port:
+    password:
+    timeout:
+  rabbitmq:
+    host:
+    port:
+    username:
+    password:
+    virtual-host:
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8

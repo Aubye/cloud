@@ -1,0 +1,13 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  security:
+    user:
+      name: actuator
+      password: dev
+      roles: ACTUATOR_ADMIN
+
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8

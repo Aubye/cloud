@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'cloud'
+
+include("platform:platform-eureka")
+
+include("service:system:system-api")
+include("service:system:system-service")
+
+include("web:portal-ui")
