@@ -50,6 +50,7 @@ configure(allprojects.findAll { it.subprojects.empty }) {
     ext {
         guavaVersion = "27.0.1-jre"
 
+        modelmapperVersion = "1.1.2"
         orikaVersion = "1.5.4"
 
         fastJosnVersion = "1.2.56"
@@ -65,6 +66,8 @@ configure(allprojects.findAll { it.subprojects.empty }) {
         // Google Guava
         compile("com.google.guava:guava:${guavaVersion}")
 
+        // ModelMapper
+        compile("org.modelmapper:modelmapper:${modelmapperVersion}")
         // Orika
         compile("ma.glasnost.orika:orika-core:${orikaVersion}")
 
@@ -115,6 +118,36 @@ configure(subprojects.findAll {
         testCompile("org.springframework.boot:spring-boot-starter-test")
     }
 }
+
+configure(subprojects.findAll {
+    it.subprojects.empty && it.name.endsWith("-api")
+}) {
+    apply plugin: "io.spring.dependency-management"
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        }
+    }
+
+    dependencies {
+        // Lombok
+        compileOnly ("org.projectlombok:lombok")
+        annotationProcessor ("org.projectlombok:lombok")
+
+        // Spring REST Jersey
+        compile("org.springframework.boot:spring-boot-starter-jersey")
+        // Spring Validation
+        compile("org.springframework.boot:spring-boot-starter-validation")
+
+        // Spring Devtools
+        runtime("org.springframework.boot:spring-boot-devtools")
+
+        // Spring Test
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+    }
+}
+
 
 configure(subprojects.findAll {
     it.subprojects.empty && it.name.endsWith("-service")
@@ -196,6 +229,20 @@ configure(subprojects.findAll {
         compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:${myBatisVersion}")
         compile("com.github.pagehelper:pagehelper:${pagehelperVersion}")
 
+        // Eureka
+        compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+        //Ribbon
+        compile("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
+        //Feign
+        //compile("org.springframework.cloud:spring-cloud-starter-openfeign")
+        //Zuul
+        //compile("org.springframework.cloud:spring-cloud-starter-netflix-zuul")
+        //Hystrix
+        //compile("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
+        //Hystrix Dashboard
+        //compile("org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard")
+
         // Spring Devtools
         runtime("org.springframework.boot:spring-boot-devtools")
 
@@ -231,24 +278,13 @@ configure(subprojects.findAll {
         // Spring MVC
         compile("org.springframework.boot:spring-boot-starter-web")
 
-        // Spring AOP
-        compile("org.springframework.boot:spring-boot-starter-aop")
         // Spring Cache
         compile("org.springframework.boot:spring-boot-starter-cache")
 
-        // Spring AMQP
-        compile("org.springframework.boot:spring-boot-starter-amqp")
-        // Spring Data JPA
-        compile("org.springframework.boot:spring-boot-starter-data-jpa")
-        // Spring Data JDBC
-        compile("org.springframework.boot:spring-boot-starter-data-jdbc")
-        // Spring Data Redis
-        compile("org.springframework.boot:spring-boot-starter-data-redis")
-
         // Spring Actuator
-        compile("org.springframework.boot:spring-boot-starter-actuator")
+        //compile("org.springframework.boot:spring-boot-starter-actuator")
         // Spring Security
-        compile("org.springframework.boot:spring-boot-starter-security")
+        //compile("org.springframework.boot:spring-boot-starter-security")
 
         // Spring WebFlux
         compile("org.springframework.boot:spring-boot-starter-webflux")
@@ -266,6 +302,12 @@ configure(subprojects.findAll {
         compile("org.springframework.boot:spring-boot-starter-quartz")
         // Spring Mail
         compile("org.springframework.boot:spring-boot-starter-mail")
+
+        // Eureka
+        compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+
+        //Ribbon
+        compile("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
 
         // Spring Devtools
         runtime("org.springframework.boot:spring-boot-devtools")

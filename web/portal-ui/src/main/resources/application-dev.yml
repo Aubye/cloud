@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: portal-ui
   main:
     allow-bean-definition-overriding: true
   security:
@@ -11,3 +13,7 @@ server:
   port: 8080
   tomcat:
     uri-encoding: UTF-8
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:11001/eureka/,http://localhost:11002/eureka/

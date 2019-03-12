@@ -2,10 +2,12 @@ package com.app.portal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
+@EnableEurekaClient
 @SpringBootApplication
-public class PortalApplication {
+public class PortalBootApplication {
     public static void main(String[] args) {
-        SpringApplication.run(PortalApplication.class, args);
+        SpringApplication.run(PortalBootApplication.class, args);
     }
 }

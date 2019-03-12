@@ -1,3 +1,3 @@
 dependencies {
-
+    compile project(":service:system:system-api")
 }

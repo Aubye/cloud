@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: system-service
   main:
     allow-bean-definition-overriding: true
   security:
@@ -12,9 +14,13 @@ spring:
     username:
     password:
   jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL55Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
+
   redis:
     host:
     port:
@@ -28,6 +34,10 @@ spring:
     virtual-host:
 
 server:
-  port: 8080
+  port: 9090
   tomcat:
     uri-encoding: UTF-8
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:11001/eureka/,http://localhost:11002/eureka/
