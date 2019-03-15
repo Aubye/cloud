@@ -1,8 +1,8 @@
 package com.app.system.service;
 
+import com.app.common.utils.BeanMapper;
 import com.app.system.dao.UserRepository;
 import com.app.system.domain.dto.UserDTO;
-import com.app.system.util.BeanMapper;
 import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

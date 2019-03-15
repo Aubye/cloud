@@ -3,6 +3,8 @@ spring:
     name: eureka
 server:
   port: 11000
+  servlet:
+    context-path: /${spring.application.name}
   tomcat:
     uri-encoding: UTF-8
 eureka:
@@ -10,6 +12,6 @@ eureka:
     hostname: localhost
   client:
     register-with-eureka: false
-    fetch-registry: false
+    fetch-registry: true
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

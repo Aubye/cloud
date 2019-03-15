@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@RestController("/index")
-public class IndexController {
+@RestController("/user")
+public class UserController {
 
     @Autowired
     private RestTemplate restTemplate;
@@ -15,7 +15,7 @@ public class IndexController {
     @Autowired
     private BeanMapper beanMapper;
 
-    @GetMapping("/zz")
+    @GetMapping
     public String getSystems() {
         String bodyA = restTemplate.getForEntity("http://EUREKA-SERVER/helloworld?key=ygy", String.class).getBody();
         String body = restTemplate.getForEntity("http://CUSTOMER-UI/customer", String.class).getBody();

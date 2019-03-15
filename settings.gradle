@@ -5,9 +5,12 @@ pluginManagement {
 }
 rootProject.name = 'cloud'
 
+include("common:common-base")
+
 include("platform:platform-eureka")
 
 include("service:system:system-api")
 include("service:system:system-service")
 
 include("web:portal-ui")
+include("web:customer-ui")

@@ -84,6 +84,38 @@ configure(allprojects.findAll { it.subprojects.empty }) {
 }
 
 configure(subprojects.findAll {
+    it.subprojects.empty && it.name.startsWith("common-")
+}) {
+    ext {
+        lombokVersion = "1.18.6"
+    }
+
+    dependencies {
+        // Lombok
+        compileOnly ("org.projectlombok:lombok:${lombokVersion}")
+        annotationProcessor ("org.projectlombok:lombok:${lombokVersion}")
+
+        // Spring AOP
+        compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+        // Spring Cache
+        compile("org.springframework.boot:spring-boot-starter-cache:${springBootVersion}")
+
+        // Spring REST Jersey
+        compile("org.springframework.boot:spring-boot-starter-jersey:${springBootVersion}")
+        // Spring Validation
+        compile("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
+
+        // Spring JSON
+        compile("org.springframework.boot:spring-boot-starter-json:${springBootVersion}")
+        // Spring Quartz
+        compile("org.springframework.boot:spring-boot-starter-quartz:${springBootVersion}")
+        // Spring Mail
+        compile("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
+    }
+}
+
+
+configure(subprojects.findAll {
     it.subprojects.empty && it.name.startsWith("platform-")
 }) {
     apply plugin: "org.springframework.boot"

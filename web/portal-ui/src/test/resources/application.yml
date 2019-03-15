@@ -10,7 +10,7 @@ spring:
       roles: ACTUATOR_ADMIN
 
 server:
-  port: 8080
+  port: 8085
 #  servlet:
 #    context-path: /${spring.application.name}
   tomcat:
@@ -18,4 +18,4 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:11000/eureka/
+      defaultZone: http://localhost:11001/eureka/,http://localhost:11002/eureka/

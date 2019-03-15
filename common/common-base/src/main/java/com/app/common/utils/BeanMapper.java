@@ -1,4 +1,4 @@
-package com.app.portal.util;
+package com.app.common.utils;
 
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import org.springframework.stereotype.Component;

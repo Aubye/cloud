@@ -1,4 +1,4 @@
-package com.app.portal.config;
+package com.app.customer.config;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @ComponentScan("com.app.*")
-public class PortalUiConfig {
+public class CustomerUiConfig {
 
     @Bean
     @LoadBalanced
