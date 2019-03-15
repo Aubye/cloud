@@ -6,10 +6,15 @@ server:
   tomcat:
     uri-encoding: UTF-8
 eureka:
+  #server:
+    #enable-self-preservation: false
   instance:
     hostname: localhost
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
   client:
+    #availability-zones:
     register-with-eureka: true
-    fetch-registry: true
+    fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${eureka_port}/eureka/
