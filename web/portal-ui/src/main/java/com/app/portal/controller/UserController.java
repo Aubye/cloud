@@ -17,7 +17,7 @@ public class UserController {
 
     @GetMapping
     public String getSystems() {
-        String bodyA = restTemplate.getForEntity("http://EUREKA-SERVER/helloworld?key=ygy", String.class).getBody();
+        String bodyA = restTemplate.getForEntity("http://EUREKA-SERVER/actuator", String.class).getBody();
         String body = restTemplate.getForEntity("http://CUSTOMER-UI/customer", String.class).getBody();
         System.out.println(body);
         return "";

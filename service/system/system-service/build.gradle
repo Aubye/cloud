@@ -1,3 +1,5 @@
 dependencies {
+    compile project(":common:common-base")
+
     compile project(":service:system:system-api")
 }
