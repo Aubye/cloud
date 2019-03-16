@@ -2,16 +2,20 @@ spring:
   application:
     name: eureka-server
 server:
-  port: 11000
-#  servlet:
-#    context-path: /${spring.application.name}
+  port: 20000
+  servlet:
+    context-path: /${spring.application.name}
   tomcat:
     uri-encoding: UTF-8
 eureka:
   instance:
     hostname: localhost
+    instance-id: ${spring.application.name}:${random.int}
+    home-page-url-path: ${spring.application.name}/actuator/
+    status-page-url-path: ${spring.application.name}/actuator/info
+    health-check-url-path: ${spring.application.name}/actuator/health
   client:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/${spring.application.name}/eureka/
