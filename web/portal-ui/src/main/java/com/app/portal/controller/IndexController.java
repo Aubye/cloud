@@ -19,10 +19,11 @@ public class IndexController {
 
     @GetMapping("/test")
     public String getSystems() {
-        String bodyA = restTemplate.getForEntity("http://EUREKA-SERVER/helloworld?key=ygy", String.class).getBody();
-        String body = restTemplate.getForEntity("http://CUSTOMER-UI/user", String.class).getBody();
+        String bodyA = restTemplate.getForEntity("http://EUREKA-SERVER/actuator", String.class).getBody();
+        System.out.println(bodyA);
+        String body = restTemplate.getForEntity("http://SYSTEM-SERVICE/user", String.class).getBody();
         System.out.println(body);
-        return "";
+        return "abc";
     }
 
 }
