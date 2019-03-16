@@ -6,6 +6,9 @@ pluginManagement {
 rootProject.name = 'cloud'
 
 include("common:common-base")
+include("common:common-config")
+include("common:common-redis")
+include("common:common-stream")
 
 include("platform:platform-eureka")
 
