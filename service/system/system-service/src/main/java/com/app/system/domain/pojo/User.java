@@ -1,4 +1,4 @@
-package com.app.system.domain.po;
+package com.app.system.domain.pojo;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
