@@ -141,7 +141,10 @@ configure(subprojects.findAll {
 
         // Eureka
         compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
-        //compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+        //compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client") {
+            //exclude(group: "com.sun.jersey")
+            //exclude(group: "javax.ws.rs", module: "jsr311-api")
+        //}
 
         // Spring Devtools
         runtime("org.springframework.boot:spring-boot-devtools")
@@ -227,9 +230,9 @@ configure(subprojects.findAll {
         //compile("org.springframework.boot:spring-boot-starter-security")
 
         // Spring WebFlux
-        compile("org.springframework.boot:spring-boot-starter-webflux")
+        //compile("org.springframework.boot:spring-boot-starter-webflux")
         // Spring WebSocket
-        compile("org.springframework.boot:spring-boot-starter-websocket")
+        //compile("org.springframework.boot:spring-boot-starter-websocket")
 
         // Spring REST Jersey
         compile("org.springframework.boot:spring-boot-starter-jersey")
@@ -239,9 +242,9 @@ configure(subprojects.findAll {
         // Spring JSON
         compile("org.springframework.boot:spring-boot-starter-json")
         // Spring Quartz
-        compile("org.springframework.boot:spring-boot-starter-quartz")
+        //compile("org.springframework.boot:spring-boot-starter-quartz")
         // Spring Mail
-        compile("org.springframework.boot:spring-boot-starter-mail")
+        //compile("org.springframework.boot:spring-boot-starter-mail")
 
         // MySQL
         compile("mysql:mysql-connector-java:${mysqlVersion}")
@@ -258,7 +261,7 @@ configure(subprojects.findAll {
         // Eureka
         compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client") {
             exclude(group: "com.sun.jersey")
-            exclude(group: "javax.we.rs", module: "jsr311-api")
+            exclude(group: "javax.ws.rs", module: "jsr311-api")
         }
 
         //Ribbon
