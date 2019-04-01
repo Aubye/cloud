@@ -11,6 +11,9 @@ include("common:common-jersey")
 include("common:common-redis")
 include("common:common-stream")
 
+include("dubbo:dubbo-consumer")
+include("dubbo:dubbo-producter")
+
 include("platform:platform-eureka")
 
 include("service:system:system-api")

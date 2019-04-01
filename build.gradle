@@ -177,7 +177,6 @@ configure(subprojects.findAll {
     }
 }
 
-
 configure(subprojects.findAll {
     it.subprojects.empty && it.name.endsWith("-service")
 }) {
@@ -340,6 +339,86 @@ configure(subprojects.findAll {
 
         //Ribbon
         compile("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
+
+        // Spring Devtools
+        runtime("org.springframework.boot:spring-boot-devtools")
+
+        // Spring Test
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+    }
+}
+
+configure(subprojects.findAll {
+    it.subprojects.empty && it.name.startsWith("dubbo-")
+}) {
+    apply plugin: "org.springframework.boot"
+    apply plugin: "io.spring.dependency-management"
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+        }
+    }
+
+    bootJar {
+        baseName = project.name
+    }
+
+    ext {
+        mysqlVersion = "8.0.15"
+        druidVersion = "1.1.14"
+
+        hibernateVersion = "5.4.0.Final"
+
+        myBatisVersion = "2.0.0"
+        pagehelperVersion = "5.1.8"
+    }
+
+    dependencies {
+        // Lombok
+        compileOnly ("org.projectlombok:lombok")
+        annotationProcessor ("org.projectlombok:lombok")
+
+        // Spring AOP
+        compile("org.springframework.boot:spring-boot-starter-aop")
+        // Spring Cache
+        compile("org.springframework.boot:spring-boot-starter-cache")
+
+        // Spring MVC
+        compile("org.springframework.boot:spring-boot-starter-web")
+
+        // Spring AMQP
+        compile("org.springframework.boot:spring-boot-starter-amqp")
+        // Spring Data JPA
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        // Spring Data JDBC
+        compile("org.springframework.boot:spring-boot-starter-data-jdbc")
+        // Spring Data Redis
+        compile("org.springframework.boot:spring-boot-starter-data-redis")
+
+        // Spring REST Jersey
+        compile("org.springframework.boot:spring-boot-starter-jersey")
+        // Spring Validation
+        compile("org.springframework.boot:spring-boot-starter-validation")
+
+        //Dubbo
+        compile("org.springframework.boot:spring-boot-starter-dubbo:1.1.1")
+
+        // Spring JSON
+        compile("org.springframework.boot:spring-boot-starter-json")
+
+        // MySQL
+        compile("mysql:mysql-connector-java:${mysqlVersion}")
+        // Druid
+        compile("com.alibaba:druid:${druidVersion}")
+
+        // Hibernate
+        compile("org.hibernate:hibernate-core:${hibernateVersion}")
+
+        // MyBatis
+        compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:${myBatisVersion}")
+        compile("com.github.pagehelper:pagehelper:${pagehelperVersion}")
 
         // Spring Devtools
         runtime("org.springframework.boot:spring-boot-devtools")

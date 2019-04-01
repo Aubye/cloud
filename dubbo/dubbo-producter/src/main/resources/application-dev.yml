@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: dubbo-producter
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8090
+  servlet:
+    context-path: /${spring.application.name}
+  tomcat:
+    uri-encoding: UTF-8
