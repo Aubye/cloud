@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = "2.1.3.RELEASE"
+        springBootVersion = "2.1.4.RELEASE"
         springCloudVersion = "Greenwich.RELEASE"
     }
     repositories {
@@ -27,8 +27,8 @@ configure(allprojects.findAll { it.subprojects.empty }) {
     apply plugin: "idea"
     apply plugin: "eclipse"
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
+    sourceCompatibility = 11
+    targetCompatibility = 11
 
     repositories {
         mavenLocal()
@@ -48,31 +48,36 @@ configure(allprojects.findAll { it.subprojects.empty }) {
     }
 
     ext {
-        guavaVersion = "27.0.1-jre"
+        guavaVersion = "27.1-jre"
 
-        modelmapperVersion = "1.1.2"
         orikaVersion = "1.5.4"
+        modelmapperVersion = "2.3.3"
 
-        fastJosnVersion = "1.2.56"
+        fastJsonVersion = "1.2.57"
 
         commonsIoVersion = "2.6"
-        commonsCodecVersion = "1.11"
-        commonsLang3Version = "3.8.1"
+        commonsCodecVersion = "1.12"
+        commonsLang3Version = "3.9"
         commonsBeanutilsVersion = "1.9.3"
         commonsCollectionsVersion = "3.2.2"
+        commonsCollections4Version = "4.3"
+
+        jsr181ApiVersion = "1.0-MR1"
+        javawsApiVersion = "2.3.1"
+        activationVersion = "1.1.1"
     }
 
     dependencies {
         // Google Guava
         compile("com.google.guava:guava:${guavaVersion}")
 
-        // ModelMapper
-        compile("org.modelmapper:modelmapper:${modelmapperVersion}")
         // Orika
         compile("ma.glasnost.orika:orika-core:${orikaVersion}")
+        // ModelMapper
+        compile("org.modelmapper:modelmapper:${modelmapperVersion}")
 
         // FastJSON
-        compile("com.alibaba:fastjson:${fastJosnVersion}")
+        compile("com.alibaba:fastjson:${fastJsonVersion}")
 
         // Commons
         compile("commons-io:commons-io:${commonsIoVersion}")
@@ -80,6 +85,12 @@ configure(allprojects.findAll { it.subprojects.empty }) {
         compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
         compile("commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}")
         compile("commons-collections:commons-collections:${commonsCollectionsVersion}")
+        compile("org.apache.commons:commons-collections4:${commonsCollections4Version}")
+
+        //JavaEE
+        compile ("javax.jws:jsr181-api:${jsr181ApiVersion}")
+        compile ("javax.xml.ws:jaxws-api:${javawsApiVersion}")
+        compile ("javax.activation:activation:${activationVersion}")
     }
 }
 
@@ -132,7 +143,11 @@ configure(subprojects.findAll {
         baseName = project.name
     }
 
-    ext {}
+    ext {
+        jsr181ApiVersion = "1.0-MR1"
+        javawsApiVersion = "2.3.1"
+        activationVersion = "1.1.1"
+    }
 
     dependencies {
         // Lombok
@@ -146,7 +161,12 @@ configure(subprojects.findAll {
             //exclude(group: "javax.ws.rs", module: "jsr311-api")
         //}
 
-        // Spring Devtools
+        //JavaEE
+        compile ("javax.jws:jsr181-api:${jsr181ApiVersion}")
+        compile ("javax.xml.ws:jaxws-api:${javawsApiVersion}")
+        compile ("javax.activation:activation:${activationVersion}")
+
+        // Spring Devtools 热部署
         runtime("org.springframework.boot:spring-boot-devtools")
 
         // Spring Test
@@ -198,7 +218,7 @@ configure(subprojects.findAll {
         mysqlVersion = "8.0.15"
         druidVersion = "1.1.14"
 
-        hibernateVersion = "5.4.0.Final"
+        hibernateVersion = "5.4.2.Final"
 
         myBatisVersion = "2.0.0"
         pagehelperVersion = "5.1.8"
@@ -274,7 +294,7 @@ configure(subprojects.findAll {
         //Hystrix Dashboard
         //compile("org.springframework.cloud:spring-cloud-starter-netflix-hystrix-dashboard")
 
-        // Spring Devtools
+        // Spring Devtools 热部署
         runtime("org.springframework.boot:spring-boot-devtools")
 
         // Spring Test
@@ -340,7 +360,7 @@ configure(subprojects.findAll {
         //Ribbon
         compile("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
 
-        // Spring Devtools
+        // Spring Devtools 热部署
         runtime("org.springframework.boot:spring-boot-devtools")
 
         // Spring Test
@@ -367,12 +387,18 @@ configure(subprojects.findAll {
 
     ext {
         mysqlVersion = "8.0.15"
-        druidVersion = "1.1.14"
+        druidVersion = "1.1.16"
 
-        hibernateVersion = "5.4.0.Final"
+        hibernateVersion = "5.4.2.Final"
 
         myBatisVersion = "2.0.0"
         pagehelperVersion = "5.1.8"
+
+        nettyVersion = "4.1.35.Final"
+        dubboVersion = "2.7.1"
+        zookeeperVersion = "3.4.14"
+        zkClientVersion = "0.11"
+        curatorVersion = "4.2.0"
     }
 
     dependencies {
@@ -387,26 +413,23 @@ configure(subprojects.findAll {
 
         // Spring MVC
         compile("org.springframework.boot:spring-boot-starter-web")
-
-        // Spring AMQP
-        compile("org.springframework.boot:spring-boot-starter-amqp")
-        // Spring Data JPA
-        compile("org.springframework.boot:spring-boot-starter-data-jpa")
-        // Spring Data JDBC
-        compile("org.springframework.boot:spring-boot-starter-data-jdbc")
-        // Spring Data Redis
-        compile("org.springframework.boot:spring-boot-starter-data-redis")
-
         // Spring REST Jersey
         compile("org.springframework.boot:spring-boot-starter-jersey")
         // Spring Validation
         compile("org.springframework.boot:spring-boot-starter-validation")
 
-        //Dubbo
-        compile("org.springframework.boot:spring-boot-starter-dubbo:1.1.1")
-
         // Spring JSON
         compile("org.springframework.boot:spring-boot-starter-json")
+
+        // Spring Data JPA
+        compile("org.springframework.boot:spring-boot-starter-data-jpa")
+        // Spring Data JDBC
+        compile("org.springframework.boot:spring-boot-starter-data-jdbc")
+
+        // Spring AMQP
+        compile("org.springframework.boot:spring-boot-starter-amqp")
+        // Spring Data Redis
+        compile("org.springframework.boot:spring-boot-starter-data-redis")
 
         // MySQL
         compile("mysql:mysql-connector-java:${mysqlVersion}")
@@ -420,7 +443,21 @@ configure(subprojects.findAll {
         compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:${myBatisVersion}")
         compile("com.github.pagehelper:pagehelper:${pagehelperVersion}")
 
-        // Spring Devtools
+        // Netty
+        compile ("io.netty:netty-all:${nettyVersion}")
+
+        // Dubbo
+        compile ("org.apache.dubbo:dubbo:${dubboVersion}")
+        compile ("org.apache.dubbo:dubbo-dependencies-zookeeper:${dubboVersion}")
+
+        //Zookeeper
+        compile ("org.apache.zookeeper:zookeeper:${zookeeperVersion}")
+        //ZkClient
+        compile ("com.101tec:zkclient:${zkClientVersion}")
+        //Curator
+        compile ("org.apache.curator:curator-framework:${curatorVersion}")
+
+        // Spring Devtools 热部署
         runtime("org.springframework.boot:spring-boot-devtools")
 
         // Spring Test
