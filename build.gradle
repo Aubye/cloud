@@ -61,10 +61,6 @@ configure(allprojects.findAll { it.subprojects.empty }) {
         commonsBeanutilsVersion = "1.9.3"
         commonsCollectionsVersion = "3.2.2"
         commonsCollections4Version = "4.3"
-
-        jsr181ApiVersion = "1.0-MR1"
-        javawsApiVersion = "2.3.1"
-        activationVersion = "1.1.1"
     }
 
     dependencies {
@@ -88,9 +84,16 @@ configure(allprojects.findAll { it.subprojects.empty }) {
         compile("org.apache.commons:commons-collections4:${commonsCollections4Version}")
 
         //JavaEE
-        compile ("javax.jws:jsr181-api:${jsr181ApiVersion}")
-        compile ("javax.xml.ws:jaxws-api:${javawsApiVersion}")
-        compile ("javax.activation:activation:${activationVersion}")
+        //compile("com.sun.mail:javax.mail:1.6.2")
+        //compile("javax.activation:activation:1.1.1")
+        
+        //compile("javax.jws:jsr181-api:1.0-MR1")
+        //compile("javax.xml.ws:jaxws-api:2.3.1")
+
+        //compile("com.sun.xml.ws:jaxws-rt:2.3.2")
+        //compile("com.sun.xml.ws:jaxws-ri:2.3.2")
+
+        //compile ("org.glassfish.jaxb:jaxb-runtime:2.3.2")
     }
 }
 
@@ -140,13 +143,12 @@ configure(subprojects.findAll {
     }
 
     bootJar {
-        baseName = project.name
+        project.name
     }
 
     ext {
-        jsr181ApiVersion = "1.0-MR1"
-        javawsApiVersion = "2.3.1"
-        activationVersion = "1.1.1"
+        jaxbApiVersion = "2.3.1"
+        jaxbImplVersion = "2.1.2"
     }
 
     dependencies {
@@ -156,15 +158,10 @@ configure(subprojects.findAll {
 
         // Eureka
         compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
-        //compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client") {
-            //exclude(group: "com.sun.jersey")
-            //exclude(group: "javax.ws.rs", module: "jsr311-api")
-        //}
 
         //JavaEE
-        compile ("javax.jws:jsr181-api:${jsr181ApiVersion}")
-        compile ("javax.xml.ws:jaxws-api:${javawsApiVersion}")
-        compile ("javax.activation:activation:${activationVersion}")
+        compile ("javax.xml.bind:jaxb-api:${jaxbApiVersion}")
+        compile ("com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}")
 
         // Spring Devtools 热部署
         runtime("org.springframework.boot:spring-boot-devtools")
@@ -211,7 +208,7 @@ configure(subprojects.findAll {
     }
 
     bootJar {
-        baseName = project.name
+        project.name
     }
 
     ext {
@@ -316,7 +313,7 @@ configure(subprojects.findAll {
     }
 
     bootJar {
-        baseName = project.name
+        project.name
     }
 
     ext {}
@@ -382,7 +379,7 @@ configure(subprojects.findAll {
     }
 
     bootJar {
-        baseName = project.name
+        project.name
     }
 
     ext {
