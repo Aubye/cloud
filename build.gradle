@@ -352,7 +352,10 @@ configure(subprojects.findAll {
         compile("org.springframework.boot:spring-boot-starter-mail")
 
         // Eureka
-        compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+        compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client") {
+            exclude(group: "com.sun.jersey")
+            exclude(group: "javax.ws.rs", module: "jsr311-api")
+        }
 
         //Ribbon
         compile("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
