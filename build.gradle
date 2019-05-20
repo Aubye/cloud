@@ -27,8 +27,8 @@ configure(allprojects.findAll { it.subprojects.empty }) {
     apply plugin: "idea"
     apply plugin: "eclipse"
 
-    sourceCompatibility = 11
-    targetCompatibility = 11
+    sourceCompatibility = "11"
+    targetCompatibility = "11"
 
     repositories {
         mavenLocal()
@@ -160,8 +160,8 @@ configure(subprojects.findAll {
         compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 
         //JavaEE
-        compile ("javax.xml.bind:jaxb-api:${jaxbApiVersion}")
-        compile ("com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}")
+        //compile ("javax.xml.bind:jaxb-api:${jaxbApiVersion}")
+        //compile ("com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}")
 
         // Spring Devtools 热部署
         runtime("org.springframework.boot:spring-boot-devtools")
