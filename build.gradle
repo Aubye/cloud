@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = "2.1.4.RELEASE"
+        springBootVersion = "2.1.5.RELEASE"
         springCloudVersion = "Greenwich.RELEASE"
     }
     repositories {
@@ -27,8 +27,8 @@ configure(allprojects.findAll { it.subprojects.empty }) {
     apply plugin: "idea"
     apply plugin: "eclipse"
 
-    sourceCompatibility = "11"
-    targetCompatibility = "11"
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
 
     repositories {
         mavenLocal()
@@ -37,6 +37,12 @@ configure(allprojects.findAll { it.subprojects.empty }) {
         maven { url "https://plugins.gradle.org/m2/" }
         mavenCentral()
         jcenter()
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
     }
 
     tasks.withType(JavaCompile) {
@@ -82,26 +88,16 @@ configure(allprojects.findAll { it.subprojects.empty }) {
         compile("commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}")
         compile("commons-collections:commons-collections:${commonsCollectionsVersion}")
         compile("org.apache.commons:commons-collections4:${commonsCollections4Version}")
-
-        //JavaEE
-        //compile("com.sun.mail:javax.mail:1.6.2")
-        //compile("javax.activation:activation:1.1.1")
-        
-        //compile("javax.jws:jsr181-api:1.0-MR1")
-        //compile("javax.xml.ws:jaxws-api:2.3.1")
-
-        //compile("com.sun.xml.ws:jaxws-rt:2.3.2")
-        //compile("com.sun.xml.ws:jaxws-ri:2.3.2")
-
-        //compile ("org.glassfish.jaxb:jaxb-runtime:2.3.2")
     }
 }
 
 configure(subprojects.findAll {
-    it.subprojects.empty && it.name.startsWith("common-")
+    it.subprojects.empty && it.name.startsWith("platform-")
 }) {
     ext {
         lombokVersion = "1.18.6"
+        jaxbApiVersion = "2.3.1"
+        jaxbImplVersion = "2.1.2"
     }
 
     dependencies {
@@ -111,63 +107,22 @@ configure(subprojects.findAll {
 
         // Spring AOP
         compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
-        // Spring Cache
-        compile("org.springframework.boot:spring-boot-starter-cache:${springBootVersion}")
 
-        // Spring REST Jersey
-        compile("org.springframework.boot:spring-boot-starter-jersey:${springBootVersion}")
         // Spring Validation
         compile("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
 
         // Spring JSON
         compile("org.springframework.boot:spring-boot-starter-json:${springBootVersion}")
-        // Spring Quartz
-        compile("org.springframework.boot:spring-boot-starter-quartz:${springBootVersion}")
-        // Spring Mail
-        compile("org.springframework.boot:spring-boot-starter-mail:${springBootVersion}")
-    }
-}
-
-
-configure(subprojects.findAll {
-    it.subprojects.empty && it.name.startsWith("platform-")
-}) {
-    apply plugin: "org.springframework.boot"
-    apply plugin: "io.spring.dependency-management"
-
-    dependencyManagement {
-        imports {
-            mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
-            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
-        }
-    }
-
-    bootJar {
-        project.name
-    }
-
-    ext {
-        jaxbApiVersion = "2.3.1"
-        jaxbImplVersion = "2.1.2"
-    }
-
-    dependencies {
-        // Lombok
-        compileOnly ("org.projectlombok:lombok")
-        annotationProcessor ("org.projectlombok:lombok")
-
-        // Eureka
-        compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 
         //JavaEE
         //compile ("javax.xml.bind:jaxb-api:${jaxbApiVersion}")
         //compile ("com.sun.xml.bind:jaxb-impl:${jaxbImplVersion}")
 
         // Spring Devtools 热部署
-        runtime("org.springframework.boot:spring-boot-devtools")
+        runtime("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
 
         // Spring Test
-        testCompile("org.springframework.boot:spring-boot-starter-test")
+        testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     }
 }
 

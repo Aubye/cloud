@@ -1,6 +1,6 @@
 package com.app.system.service;
 
-import com.app.common.utils.BeanMapper;
+import com.app.platform.utils.BeanMapper;
 import com.app.system.dao.UserRepository;
 import com.app.system.domain.dto.UserDTO;
 import com.google.common.collect.Lists;

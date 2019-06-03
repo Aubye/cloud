@@ -5,16 +5,12 @@ pluginManagement {
 }
 rootProject.name = 'cloud'
 
-include("common:common-base")
-include("common:common-config")
-include("common:common-jersey")
-include("common:common-redis")
-include("common:common-stream")
-
 include("dubbo:dubbo-consumer")
 include("dubbo:dubbo-producter")
 
+include("platform:platform-common")
 include("platform:platform-eureka")
+include("platform:platform-jersey")
 
 include("service:system:system-api")
 include("service:system:system-service")

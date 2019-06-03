@@ -1,0 +1,10 @@
+dependencies {
+    // Spring AOP
+    compile("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+
+    // Spring Validation
+    compile("org.springframework.boot:spring-boot-starter-validation:${springBootVersion}")
+
+    // Spring JSON
+    compile("org.springframework.boot:spring-boot-starter-json:${springBootVersion}")
+}

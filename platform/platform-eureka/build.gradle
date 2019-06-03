@@ -1,3 +1,19 @@
+
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+    }
+}
+
+bootJar {
+    project.name
+}
+
 dependencies {
-    
+    // Eureka
+    compile("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
 }
