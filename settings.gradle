@@ -11,6 +11,7 @@ include("dubbo:dubbo-producter")
 include("platform:platform-common")
 include("platform:platform-eureka")
 include("platform:platform-jersey")
+include("platform:platform-rest")
 
 include("service:system:system-api")
 include("service:system:system-service")

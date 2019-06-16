@@ -1,0 +1,6 @@
+ext{
+    resteasyVersion = "2.3.4-RELEASE"
+}
+dependencies {
+    compile ("com.paypal.springboot:resteasy-spring-boot-starter:${resteasyVersion}")
+}

@@ -295,7 +295,7 @@ configure(subprojects.findAll {
         compile("org.springframework.boot:spring-boot-starter-websocket")
 
         // Spring REST Jersey
-        compile("org.springframework.boot:spring-boot-starter-jersey")
+        //compile("org.springframework.boot:spring-boot-starter-jersey")
         // Spring Validation
         compile("org.springframework.boot:spring-boot-starter-validation")
 

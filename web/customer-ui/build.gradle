@@ -1,3 +1,4 @@
 dependencies {
+    compile project(":platform:platform-rest")
     compile project(":service:system:system-api")
 }
